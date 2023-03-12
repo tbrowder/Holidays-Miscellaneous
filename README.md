@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/tbrowder/Holidays-Miscellaneous/actions/workflows/linux.yml/badge.svg)](https://github.com/tbrowder/Holidays-Miscellaneous/actions) [![Actions Status](https://github.com/tbrowder/Holidays-Miscellaneous/actions/workflows/macos.yml/badge.svg)](https://github.com/tbrowder/Holidays-Miscellaneous/actions) [![Actions Status](https://github.com/tbrowder/Holidays-Miscellaneous/actions/workflows/windows.yml/badge.svg)](https://github.com/tbrowder/Holidays-Miscellaneous/actions)
+
 NAME
 ====
 
@@ -13,7 +15,43 @@ use Holidays::Miscellaneous;
 DESCRIPTION
 ===========
 
-**Holidays::Miscellaneous** is ...
+**Holidays::Miscellaneous** is a collection of holidays the author uses for *perpetual* calendar creation. (The term *perpetual* is used to to mean the source code to generate the calendar's holiday dates is valid for any given year since the code uses the documented rules for determining those dates and no additional data need be inserted in the code annually.) 
+
+Note the names and dates of the holidays are those customarily used in the U.S., but several of those holidays are commonly celebrated in other countries around the world.
+
+Current holiday list
+--------------------
+
+  * Valentine's Day - February 14
+
+  * St. Patrick's Day - March 17
+
+  * Mother's Day - second Sunday in May
+
+  * Armed Forces Day - third Saturday in May
+
+  * Flag Day - June 14
+
+  * Father's Day - third Sunday in June
+
+  * Pearl Harbor Day - December 7
+
+SEE ALSO
+========
+
+Related Raku modules by the author:
+
+  * **Date::Christian::Advent**
+
+  * **Date::Easter**
+
+  * **Holidays::US::Federal**
+
+  * **Calendar**
+
+  * **Date::Event**
+
+  * **Date::Utils**
 
 AUTHOR
 ======

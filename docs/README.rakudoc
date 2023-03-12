@@ -1,5 +1,6 @@
 =begin pod
 
+
 =head1 NAME
 
 B<Holidays::Miscellaneous> - Provides perpetual data for miscellaneous holidays
@@ -14,7 +15,37 @@ use Holidays::Miscellaneous;
 
 =head1 DESCRIPTION
 
-B<Holidays::Miscellaneous> is ...
+B<Holidays::Miscellaneous> is a collection of holidays the author uses
+for I<perpetual> calendar creation. (The term I<perpetual> is used to 
+to mean the source code to generate the calendar's holiday dates is valid 
+for any given year since the code uses the documented rules for 
+determining those dates and no additional data need be inserted in the 
+code annually.) 
+
+Note the names and dates of the holidays are those customarily used in the U.S., but
+several of those holidays are commonly celebrated in other countries
+around the world.
+
+=head2 Current holiday list
+
+=item Valentine's Day - February 14
+=item St. Patrick's Day - March 17
+=item Mother's Day - second Sunday in May
+=item Armed Forces Day - third Saturday in May
+=item Flag Day - June 14
+=item Father's Day - third Sunday in June
+=item Pearl Harbor Day - December 7
+
+=head1 SEE ALSO
+
+Related Raku modules by the author:
+
+=item B<Date::Christian::Advent>
+=item B<Date::Easter>
+=item B<Holidays::US::Federal>
+=item B<Calendar>
+=item B<Date::Event>
+=item B<Date::Utils>
 
 =head1 AUTHOR
 
