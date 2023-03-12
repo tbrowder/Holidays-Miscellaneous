@@ -15,7 +15,7 @@ use Holidays::Miscellaneous;
 
 =head1 DESCRIPTION
 
-B<Holidays::Miscellaneous> is a collection of holidays the author uses
+B<Holidays::Miscellaneous> is a collection of holiday data the author uses
 for I<perpetual> calendar creation. (The term I<perpetual> is used to 
 to mean the source code to generate the calendar's holiday dates is valid 
 for any given year since the code uses the documented rules for 
