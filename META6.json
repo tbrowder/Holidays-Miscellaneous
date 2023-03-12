@@ -1,0 +1,25 @@
+{
+  "auth": "zef:tbrowder",
+  "authors": [
+    "Tom Browder"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "Provides perpetual data for miscellaneous holidays",
+  "license": "Artistic-2.0",
+  "name": "Holidays::Miscellaneous",
+  "perl": "6.d",
+  "provides": {
+    "Holidays::Miscellaneous": "lib/Holidays/Miscellaneous.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
