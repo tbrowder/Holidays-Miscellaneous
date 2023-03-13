@@ -26,4 +26,15 @@ for @us -> $year {
     }
 }
 
+sub get-hanukkah-start(:$year!, :$debug --> Date) is export {
+    # scheme is to do the following:
+    #   start with the first day of December
+    #   get the Hebrew y/m/d equivalent of that Date
+    #   while hebrew date not first day of hanukkah {
+    #       get next Date
+    #   }
+    my Date $us .= new: $year, 1, 1;
+    my Date::Calendar::Hebrew $he .= new-from-date: $us;
+}
+
 

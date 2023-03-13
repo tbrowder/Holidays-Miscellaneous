@@ -15,12 +15,12 @@ use Holidays::Miscellaneous;
 
 =head1 DESCRIPTION
 
-B<Holidays::Miscellaneous> is a collection of holiday data the author uses
-for I<perpetual> calendar creation. (The term I<perpetual> is used to 
-to mean the source code to generate the calendar's holiday dates is valid 
-for any given year since the code uses the documented rules for 
-determining those dates and no additional data need be inserted in the 
-code annually.) 
+B<Holidays::Miscellaneous> is a collection of holiday data the author
+uses for I<perpetual> calendar creation. (The term I<perpetual> is
+used to to mean the source code to generate the calendar's holiday
+dates is valid for any given year since the code uses the documented
+rules for determining those dates and no additional data need be
+inserted in the code annually.)
 
 Note the names and dates of the holidays are those customarily used in the U.S., but
 several of those holidays are commonly celebrated in other countries
@@ -28,6 +28,7 @@ around the world.
 
 =head2 Current holiday list
 
+=item Groundhog Day - February 2
 =item Valentine's Day - February 14
 =item St. Patrick's Day - March 17
 =item Mother's Day - second Sunday in May

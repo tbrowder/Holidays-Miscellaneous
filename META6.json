@@ -6,6 +6,10 @@
   "build-depends": [
   ],
   "depends": [
+    "Date::Calendar::Hebrew",
+    "Text::Utils",
+    "Date::Event",
+    "Date::Utils"
   ],
   "description": "Provides perpetual data for miscellaneous holidays",
   "license": "Artistic-2.0",
@@ -18,6 +22,7 @@
   ],
   "source-url": "https://github.com/tbrowder/Holidays-Miscellaneous.git",
   "tags": [
+    "date date calendar holiday"
   ],
   "test-depends": [
   ],
