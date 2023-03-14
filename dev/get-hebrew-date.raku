@@ -27,6 +27,7 @@ for @us -> $year {
 }
 
 sub get-hanukkah-start(:$year!, :$debug --> Date) is export {
+    # Hanukkah in the Hebrew calendar is: 25 Kislev
     # scheme is to do the following:
     #   start with the first day of December
     #   get the Hebrew y/m/d equivalent of that Date
