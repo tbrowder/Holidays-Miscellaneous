@@ -12,30 +12,30 @@ if not @*ARGS.elems {
 }
 
 for 2023..2029 -> $year {
-my Date $us .= new: $year, 11, 1;
-while $us.year == $year {
+
+    # all we need is the Hebrew year for the Gregorian
+    # year at the beginning of November
+    my Date $us .= new: $year, 11, 1;
     my Date::Calendar::Hebrew $he .= new-from-date: $us;
-    if $he.day == 24 and $he.month-name eq 'Kislev' {
-        say "US date:  {$us.year}-{$us.month}-{$us.day}";
-        say "  He date:  {$he.year}-{$he.month}-{$he.day}";
-        say "  He names: {$he.day} {$he.month-name} {$he.year}";
-        say "  First day of Hanukkah";
-        last;
-    }
-    $us += 1;
-}
+
+    # Hanukkah is $he.year-09-25
+    # BUT we want the Gregorian day so we ask for
+    #   the day before
+    my $he-day = 24; # <= day before
+    my $he-year = $he.year;
+    $he .= new: :year($he-year), :month(9), :day($he-day);
+    $us  = $he.to-date;
+
+    say "US date:  {$us.year}-{$us.month}-{$us.day}";
+    say "  He date:  {$he.year}-{$he.month}-{$he.day}";
+    say "  He names: {$he.day} {$he.month-name} {$he.year}";
+    say "  First day of Hanukkah";
 }
 
 sub get-hanukkah-start(:$year!, :$debug --> Date) is export {
     # Hanukkah in the Hebrew calendar is: 25 Kislev
     #   Kislev is month 9
-    # scheme is to do the following:
-    #   start with the first day of December
-    #   get the Hebrew y/m/d equivalent of that Date
-    #   while hebrew date not first day of hanukkah {
-    #       get next Date
-    #   }
-    my Date $us .= new: $year, 1, 1;
+    my Date $us .= new: $year, 11, 1;
     my Date::Calendar::Hebrew $he .= new-from-date: $us;
 }
 
