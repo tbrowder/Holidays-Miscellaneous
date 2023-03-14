@@ -11,18 +11,19 @@ if not @*ARGS.elems {
     exit;
 }
 
-my $year = 2023; #..2030;
+for 2023..2029 -> $year {
 my Date $us .= new: $year, 11, 1;
 while $us.year == $year {
-    say "US date:  {$us.year}-{$us.month}-{$us.day}";
     my Date::Calendar::Hebrew $he .= new-from-date: $us;
-    say "  He date:  {$he.year}-{$he.month}-{$he.day}";
-    say "  He names: {$he.day} {$he.month-name} {$he.year}";
-    if $he.day == 25 and $he.month-name eq 'Kislev' {
+    if $he.day == 24 and $he.month-name eq 'Kislev' {
+        say "US date:  {$us.year}-{$us.month}-{$us.day}";
+        say "  He date:  {$he.year}-{$he.month}-{$he.day}";
+        say "  He names: {$he.day} {$he.month-name} {$he.year}";
         say "  First day of Hanukkah";
         last;
     }
     $us += 1;
+}
 }
 
 sub get-hanukkah-start(:$year!, :$debug --> Date) is export {
