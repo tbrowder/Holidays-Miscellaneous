@@ -15,7 +15,7 @@ use Holidays::Miscellaneous;
 DESCRIPTION
 ===========
 
-**Holidays::Miscellaneous** is a collection of holiday data the author uses for *perpetual* calendar creation. (The term *perpetual* is used to to mean the source code to generate the calendar's holiday dates is valid for any given year since the code uses the documented rules for determining those dates and no additional data need be inserted in the code annually.)
+**Holidays::Miscellaneous** is a collection of holiday data the author uses for *perpetual* calendar creation. (The term *perpetual* is used to mean the source code to generate the calendar's holiday dates is valid for any given year since the code uses the documented rules for determining those dates and no additional data need be inserted in the code annually.)
 
 Note the names and dates of the holidays are those customarily used in the U.S., but several of those holidays are commonly celebrated in other countries around the world.
 
@@ -50,6 +50,10 @@ Related Raku modules by the author:
   * **Holidays::US::Federal**
 
   * **Calendar**
+
+  * **Calendar::Christian**
+
+  * **Calendar::Jewish**
 
   * **Date::Event**
 

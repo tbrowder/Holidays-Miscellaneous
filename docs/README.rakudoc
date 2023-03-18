@@ -17,7 +17,7 @@ use Holidays::Miscellaneous;
 
 B<Holidays::Miscellaneous> is a collection of holiday data the author
 uses for I<perpetual> calendar creation. (The term I<perpetual> is
-used to to mean the source code to generate the calendar's holiday
+used to mean the source code to generate the calendar's holiday
 dates is valid for any given year since the code uses the documented
 rules for determining those dates and no additional data need be
 inserted in the code annually.)
@@ -45,6 +45,8 @@ Related Raku modules by the author:
 =item B<Date::Easter>
 =item B<Holidays::US::Federal>
 =item B<Calendar>
+=item B<Calendar::Christian>
+=item B<Calendar::Jewish>
 =item B<Date::Event>
 =item B<Date::Utils>
 
