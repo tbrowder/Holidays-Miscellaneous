@@ -37,14 +37,12 @@ class Holiday is Date::Event {};
 # Perl Harbor Day
 # Armed Forces Day
 
-
 our %holidays is export = [
     # traditional (fixed) dates
     # Groundhog Day - February 2
     ground => {
         name => "Groundhog Day",
         date => "0000-02-02",
-        date-observed => "",
         short-name => "",
         id => 'ground',
     },
@@ -52,7 +50,6 @@ our %holidays is export = [
     val => {
         name => "Valentine's Day",
         date => "0000-02-14",
-        date-observed => "",
         short-name => "",
         id => 'val',
     },
@@ -61,7 +58,6 @@ our %holidays is export = [
     pat => {
         name => "St. Patrick's Day",
         date => "0000-03-17",
-        date-observed => "",
         short-name => "",
         id => 'pat',
     },
@@ -69,7 +65,6 @@ our %holidays is export = [
     flag => {
         name => "Flag Day",
         date => "0000-06-14",
-        date-observed => "",
         short-name => "",
         id => 'flag',
     },
@@ -78,7 +73,6 @@ our %holidays is export = [
     pearl => {
         name => "Pearl Harbor Day",
         date => "0000-12-07",
-        date-observed => "",
         short-name => "",
         id => 'pearl',
     },
@@ -89,24 +83,21 @@ our %holidays is export = [
     # Mother's Day - second Sunday in May
     moth => {
         name => "Mother's Day",
-        date => "",
-        date-observed => "",
+        is-calculated => True,
         short-name => "",
         id => 'moth',
     },
     # Armed Forces Day - third Saturday in May
     arm => {
         name => "Armed Forces Day",
-        date => "",
-        date-observed => "",
+        is-calculated => True,
         short-name => "",
         id => "arm",
     },
     # Father's Day - third Sunday in June
     fath => {
         name => "Father's Day",
-        date => "",
-        date-observed => "",
+        is-calculated => True,
         short-name => "",
         id => "fath",
     },
@@ -139,7 +130,7 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
 
     my $name          = %holidays{$id}<name>;
     my $date          = %holidays{$id}<date>;
-    my $date-observed = %holidays{$id}<date-observed>;
+    #my $date-observed = %holidays{$id}<date-observed>;
     my $short-name    = %holidays{$id}<short-name>;
     my $check-id      = %holidays{$id}<id>;
 
@@ -151,7 +142,7 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
         $date = Date.new("$year-$month-$day");
         $date-observed = $date;
     }
-    else {
+    els {
         # calculated date:
         # date and observed are the same and must be calculated
         $date = calc-date :$name, :$year, :$debug;
