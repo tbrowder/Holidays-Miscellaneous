@@ -28,15 +28,19 @@ Current holiday list
 
   * St. Patrick's Day - March 17
 
-  * Mother's Day - second Sunday in May
+  * *Mother's Day - second Sunday in May
 
-  * Armed Forces Day - third Saturday in May
+  * *Armed Forces Day - third Saturday in May
 
   * Flag Day - June 14
 
-  * Father's Day - third Sunday in June
+  * *Father's Day - third Sunday in June
 
   * Pearl Harbor Day - December 7
+
+Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed date vary from year to year and this module uses module **Date::Utils** for the calculation.
+
+The holidays without the leading asterisk are classified as 'directed' or 'fixed' since they are always on fixed dates.
 
 SEE ALSO
 ========
@@ -67,7 +71,7 @@ Tom Browder <tbrowder@acm.org>
 COPYRIGHT AND LICENSE
 =====================
 
-© 2023 Tom Browder
+© 2024 Tom Browder
 
 This library is free software; you may redistribute it or modify it under the Artistic License 2.0.
 
