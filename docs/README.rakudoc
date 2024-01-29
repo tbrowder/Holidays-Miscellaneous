@@ -31,11 +31,19 @@ around the world.
 =item Groundhog Day - February 2
 =item Valentine's Day - February 14
 =item St. Patrick's Day - March 17
-=item Mother's Day - second Sunday in May
-=item Armed Forces Day - third Saturday in May
+=item *Mother's Day - second Sunday in May
+=item *Armed Forces Day - third Saturday in May
 =item Flag Day - June 14
-=item Father's Day - third Sunday in June
+=item *Father's Day - third Sunday in June
 =item Pearl Harbor Day - December 7
+
+Holidays marked with a leading '*' are classified as 'calculated'
+holidays since their observed date vary from year to year and
+this module uses module B<Date::Utils> for the calculation.
+
+The holidays without the leading asterisk
+are classified as 'directed' or 'fixed'
+since they are always on fixed dates.
 
 =head1 SEE ALSO
 
@@ -56,7 +64,7 @@ Tom Browder <tbrowder@acm.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-© 2023 Tom Browder
+© 2024 Tom Browder
 
 This library is free software; you may redistribute it or modify it under the Artistic License 2.0.
 
