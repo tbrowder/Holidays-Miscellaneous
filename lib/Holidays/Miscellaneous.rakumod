@@ -128,21 +128,21 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
     # directed or calculated rule and their actual and observed dates
     # are the same.
 
-    my $name          = %holidays{$id}<name>;
-    my $date          = %holidays{$id}<date>;
+    my $name           = %holidays{$id}<name>;
+    my $date           = %holidays{$id}<date>;
     #my $date-observed = %holidays{$id}<date-observed>;
-    my $short-name    = %holidays{$id}<short-name>;
-    my $check-id      = %holidays{$id}<id>;
+    my $short-name     = %holidays{$id}<short-name>;
+    my $check-id       = %holidays{$id}<id>;
 
     # directed date
-    if $date ~~ /^ '0000-' (\S\S) '-' (\S\S) / {
+    if $date ~~ /^ '0000-' (\d\d) '-' (\d\d) / {
         my $month = ~$0;
         my $day   = ~$1;
         # the actual date
         $date = Date.new("$year-$month-$day");
         $date-observed = $date;
     }
-    els {
+    elsif {
         # calculated date:
         # date and observed are the same and must be calculated
         $date = calc-date :$name, :$year, :$debug;
