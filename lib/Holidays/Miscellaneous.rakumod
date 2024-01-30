@@ -21,12 +21,32 @@ unit module Holidays::Miscellaneous;
 #   source: Wikipedia
 
 use Date::Utils;
-use Date::Event;
 
-class Holiday is Date::Event {};
+class Holiday is export {
+    has Str  $.name          is required; #  => "Mother's Day",
+    has Bool $.is-calculated;             #  => True,
+    has Str  $.id            is required; #  => 'moth',
+    has Date $.date;
+    has Str  $.short-name = "";
+    # data for nth day of month
+    has UInt $.nth-value = 0;              #         => 2,
+    has UInt $.nth-dow = 0;                # day-of-week number (1..7 Monday..Sunday)
+    has UInt $.nth-month-number = 0;       # 1..12 Jan..Dec
+
+    submethod TWEAK {
+        if not $!date.defined {
+            $!is-calculated = True;
+        }
+        if $!is-calculated {
+            $!nth-value        = %holidays{$!id}<nth-value>;
+            $!nth-dow          = %holidays{$!id}<nth-dow>;
+            $!nth-month-number = %holidays{$!id}<month-number>;
+        }
+    }
+}
 
 # holidays are divided into two categories:
-#   traditional (same every year)
+#   traditional or fixed (same every year)
 #   calculated by some formula
 
 # Valentines Day
@@ -69,6 +89,7 @@ our %holidays is export = [
         id => 'flag',
     },
     # Halloween - October 31
+
     # Pearl Harbor Day - December 7
     pearl => {
         name => "Pearl Harbor Day",
@@ -78,7 +99,7 @@ our %holidays is export = [
     },
 
     #===================================================
-    # calculated (actual and observed date are the same)
+    # calculated 
     #===================================================
     # Mother's Day - second Sunday in May
     moth => {
@@ -86,6 +107,10 @@ our %holidays is export = [
         is-calculated => True,
         short-name => "",
         id => 'moth',
+        # data for nth day of month
+        nth-value        => 2,
+        nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 5, # 1..12 Jan..Dec
     },
     # Armed Forces Day - third Saturday in May
     arm => {
@@ -93,6 +118,10 @@ our %holidays is export = [
         is-calculated => True,
         short-name => "",
         id => "arm",
+        # data for nth day of month
+        nth-value        => 3,
+        nth-dow          => 6, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 5, # 1..12 Jan..Dec
     },
     # Father's Day - third Sunday in June
     fath => {
@@ -100,6 +129,10 @@ our %holidays is export = [
         is-calculated => True,
         short-name => "",
         id => "fath",
+        # data for nth day of month
+        nth-value        => 3,
+        nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 6, # 1..12 Jan..Dec
     },
 ];
 
@@ -125,30 +158,30 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
     # date => "0000-nn-nn" have traditional, designated dates.
     #
     # Holidays with attribute date => "" (empty) are subject to the
-    # directed or calculated rule and their actual and observed dates
+    # calculated rule and their actual and observed dates
     # are the same.
 
     my $name           = %holidays{$id}<name>;
     my $date           = %holidays{$id}<date>;
-    #my $date-observed = %holidays{$id}<date-observed>;
     my $short-name     = %holidays{$id}<short-name>;
     my $check-id       = %holidays{$id}<id>;
+    # for calculated dates
+    my $nth-value      = %holidays{$id}<nth-value>;
+    my $nth-dow        = %holidays{$id}<nth-dow>;
+    my $nth-month      = %holidays{$id}<nth-month>;
 
-    # directed date
+    # fixed or directed date
     if $date ~~ /^ '0000-' (\d\d) '-' (\d\d) / {
         my $month = ~$0;
         my $day   = ~$1;
         # the actual date
         $date = Date.new("$year-$month-$day");
-        $date-observed = $date;
     }
-    elsif {
+    else {
         # calculated date:
-        # date and observed are the same and must be calculated
         $date = calc-date :$name, :$year, :$debug;
-        $date-observed = $date;
     }
-    Holiday.new: :$date, :$date-observed, :$id, :$name, :$short-name;
+    Holiday.new: :$date, :$id, :$name, :$short-name;
 }
 
 sub calc-date(:$name!, :$year!, :$debug --> Date) is export {

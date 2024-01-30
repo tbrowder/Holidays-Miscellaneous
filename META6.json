@@ -8,7 +8,6 @@
   "depends": [
     "Date::Calendar::Hebrew",
     "Text::Utils",
-    "Date::Event",
     "Date::Utils"
   ],
   "description": "Provides perpetual data for miscellaneous holidays",
