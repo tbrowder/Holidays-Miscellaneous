@@ -24,21 +24,7 @@ use Date::Utils;
 #       begins at sunset.
 #   source: Wikipedia
 
-
 class MiscHoliday is Date::Event is export {}
-
-=begin comment
-    submethod TWEAK {
-        if not $!date.defined {
-            $!is-calculated = True;
-        }
-        if $!is-calculated {
-            $!nth-value        = %holidays{$!id}<nth-value>;
-            $!nth-dow          = %holidays{$!id}<nth-dow>;
-            $!nth-month-number = %holidays{$!id}<month-number>;
-        }
-    }
-=end comment
 
 # holidays are divided into two categories:
 #   traditional or fixed (same every year)
@@ -52,11 +38,12 @@ class MiscHoliday is Date::Event is export {}
 # Perl Harbor Day
 # Armed Forces Day
 
-sub get-misc-holidays(:$year!, :$debug --> Hash) is export {
+sub get-misc-holidays(:$year!, :$set-id!, :$debug --> Hash) is export {
     my %h;
     for %misc-holidays.keys -> $id {
+        my $uid = $set-id ~ '|' ~ $id;
         my MiscHoliday $h = calc-misc-holiday-dates :$year, :$id, :$debug;
-        %h{$h.date}          = $h;
+        %h{$h.date}{$uid} = $h;
     }
     %h
 }
