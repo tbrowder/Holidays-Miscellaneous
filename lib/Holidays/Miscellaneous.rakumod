@@ -69,7 +69,7 @@ sub get-misc-holidays(:$year!, :$debug --> Hash) is export {
 #      it is observed on the previous Friday. When the date falls
 #      on a Sunday, it is observed on the following Monday.
 
-sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
+sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> MiscHoliday) is export {
     # Holidays defined in the %holidays hash with attribute
     # date => "0000-nn-nn" have traditional, designated dates.
     #
@@ -78,7 +78,7 @@ sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
     # are the same.
 
     my $name           = %misc-holidays{$id}<name>;
-    my $date           = %misc-holidays{$id}<date>;
+    my $date           = %misc-holidays{$id}<date> // 0;
     my $short-name     = %misc-holidays{$id}<short-name>;
     my $check-id       = %misc-holidays{$id}<id>;
     # for calculated dates
@@ -101,13 +101,28 @@ sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
 }
 
 sub calc-date(:$name!, :$year!, :$debug --> Date) is export {
+    # This should be similar to the same routine in Holidays::US::Federal
     my Date $date;
     with $name {
         my ($month, $nth, $dow);
-        when $_.contains("") {
-            $month = 0;
-            $dow   = 0;
-            $nth   = 0;
+        when $_.contains("Mother") {
+            $month = 5;
+            $dow   = 7;
+            $nth   = 2;
+            $date  = nth-day-of-week-in-month :$year, :$month,
+                     :day-of-week($dow), :$nth, :$debug;
+        }
+        when $_.contains("Armed") {
+            $month = 5;
+            $dow   = 6;
+            $nth   = 3;
+            $date  = nth-day-of-week-in-month :$year, :$month,
+                     :day-of-week($dow), :$nth, :$debug;
+        }
+        when $_.contains("Father") {
+            $month = 6;
+            $dow   = 7;
+            $nth   = 3;
             $date  = nth-day-of-week-in-month :$year, :$month,
                      :day-of-week($dow), :$nth, :$debug;
         }

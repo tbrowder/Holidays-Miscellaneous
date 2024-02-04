@@ -2,7 +2,9 @@ use Test;
 use Holidays::Miscellaneous;
 use Holidays::Data;
 
-my ($o, $name, $is-calculated, $id);
+my ($o, $name, $is-calculated, $id, $year);
+$year = 2024;
+
 for %misc-holidays.keys -> $k {
     my %h = %(%misc-holidays{$k});
     $name = %h<name>;
@@ -11,6 +13,8 @@ for %misc-holidays.keys -> $k {
     my $h = MiscHoliday.new: :$name, :$is-calculated, :$id;
     isa-ok $h, MiscHoliday;
 }
+
+my %h = get-misc-holidays :$year;
 
 done-testing;
 
