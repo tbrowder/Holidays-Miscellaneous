@@ -69,7 +69,7 @@ sub get-misc-holidays(:$year!, :$debug --> Hash) is export {
 #      it is observed on the previous Friday. When the date falls
 #      on a Sunday, it is observed on the following Monday.
 
-sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> MiscHoliday) is export {
+sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> MiscHoliday) { # is export {
     # Holidays defined in the %holidays hash with attribute
     # date => "0000-nn-nn" have traditional, designated dates.
     #
@@ -100,7 +100,7 @@ sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> MiscHoliday) is export {
     MiscHoliday.new: :$date, :$id, :$name, :$short-name;
 }
 
-sub calc-date(:$name!, :$year!, :$debug --> Date) is export {
+sub calc-date(:$name!, :$year!, :$debug --> Date) { # is export {
     # This should be similar to the same routine in Holidays::US::Federal
     my Date $date;
     with $name {
