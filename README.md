@@ -38,7 +38,7 @@ Current holiday list
 
   * Pearl Harbor Day - December 7
 
-Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed date vary from year to year and this module uses module **Date::Utils** for the calculation.
+Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed dates vary from year to year. This module uses module **Date::Utils** for that calculation.
 
 The holidays without the leading asterisk are classified as 'directed' or 'fixed' since they are always on fixed dates.
 

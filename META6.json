@@ -8,13 +8,15 @@
   "depends": [
     "Date::Calendar::Hebrew",
     "Text::Utils",
-    "Date::Utils"
+    "Date::Utils",
+    "Date::Event"
   ],
   "description": "Provides perpetual data for miscellaneous holidays",
   "license": "Artistic-2.0",
   "name": "Holidays::Miscellaneous",
   "perl": "6.d",
   "provides": {
+    "Holidays::Data": "lib/Holidays/Data.rakumod",
     "Holidays::Miscellaneous": "lib/Holidays/Miscellaneous.rakumod"
   },
   "resources": [

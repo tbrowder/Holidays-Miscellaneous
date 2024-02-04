@@ -1,5 +1,6 @@
 use Test;
 use Holidays::Miscellaneous;
+use Holidays::Data;
 
 my ($o, $name, $is-calculated, $id);
 for %holidays.keys -> $k {

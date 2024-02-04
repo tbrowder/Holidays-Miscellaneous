@@ -1,5 +1,7 @@
 unit module Holidays::Miscellaneous;
 
+use Holidays::Data;
+
 # Valentines Day
 # Flag Day
 # St Patricks Day
@@ -30,7 +32,7 @@ class Holiday is export {
     has Str  $.short-name = "";
     # data for nth day of month
     has UInt $.nth-value = 0;              #         => 2,
-    has UInt $.nth-dow = 0;                # day-of-week number (1..7 Monday..Sunday)
+    has UInt $.nth-dow     = 0;            # day-of-week number (1..7 Monday..Sunday)
     has UInt $.nth-month-number = 0;       # 1..12 Jan..Dec
 
     submethod TWEAK {
@@ -57,85 +59,6 @@ class Holiday is export {
 # Perl Harbor Day
 # Armed Forces Day
 
-our %holidays is export = [
-    # traditional (fixed) dates
-    # Groundhog Day - February 2
-    ground => {
-        name => "Groundhog Day",
-        date => "0000-02-02",
-        short-name => "",
-        id => 'ground',
-    },
-    # Valentine's Day - February 14
-    val => {
-        name => "Valentine's Day",
-        date => "0000-02-14",
-        short-name => "",
-        id => 'val',
-    },
-
-    # St. Patrick's Day - March 17
-    pat => {
-        name => "St. Patrick's Day",
-        date => "0000-03-17",
-        short-name => "",
-        id => 'pat',
-    },
-    # Flag Day - June 14
-    flag => {
-        name => "Flag Day",
-        date => "0000-06-14",
-        short-name => "",
-        id => 'flag',
-    },
-    # Halloween - October 31
-
-    # Pearl Harbor Day - December 7
-    pearl => {
-        name => "Pearl Harbor Day",
-        date => "0000-12-07",
-        short-name => "",
-        id => 'pearl',
-    },
-
-    #===================================================
-    # calculated 
-    #===================================================
-    # Mother's Day - second Sunday in May
-    moth => {
-        name => "Mother's Day",
-        is-calculated => True,
-        short-name => "",
-        id => 'moth',
-        # data for nth day of month
-        nth-value        => 2,
-        nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
-        nth-month-number => 5, # 1..12 Jan..Dec
-    },
-    # Armed Forces Day - third Saturday in May
-    arm => {
-        name => "Armed Forces Day",
-        is-calculated => True,
-        short-name => "",
-        id => "arm",
-        # data for nth day of month
-        nth-value        => 3,
-        nth-dow          => 6, # day-of-week number (1..7 Monday..Sunday)
-        nth-month-number => 5, # 1..12 Jan..Dec
-    },
-    # Father's Day - third Sunday in June
-    fath => {
-        name => "Father's Day",
-        is-calculated => True,
-        short-name => "",
-        id => "fath",
-        # data for nth day of month
-        nth-value        => 3,
-        nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
-        nth-month-number => 6, # 1..12 Jan..Dec
-    },
-];
-
 sub get-holidays(:$year!, :$debug --> Hash) is export {
     my %h;
     for %holidays.keys -> $id {
@@ -154,7 +77,7 @@ sub get-holidays(:$year!, :$debug --> Hash) is export {
 #      on a Sunday, it is observed on the following Monday.
 
 sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
-    # Holidays defined in the %holidays hash with attribute 
+    # Holidays defined in the %holidays hash with attribute
     # date => "0000-nn-nn" have traditional, designated dates.
     #
     # Holidays with attribute date => "" (empty) are subject to the
@@ -214,4 +137,3 @@ sub get-hanukkah-start(:$year!, :$debug --> Date) is export {
     my Date::Calendar::Hebrew $he .= new-from-date: $us;
 }
 =end comment
-
