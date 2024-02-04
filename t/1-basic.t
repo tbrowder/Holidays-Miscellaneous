@@ -1,6 +1,6 @@
 use Test;
 use Holidays::Miscellaneous;
 
-pass "replace me";
+use-ok 'Holidays::Miscellaneous';
 
 done-testing;

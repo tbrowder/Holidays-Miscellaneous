@@ -9,7 +9,8 @@
     "Date::Calendar::Hebrew",
     "Text::Utils",
     "Date::Utils",
-    "Date::Event"
+    "Date::Event",
+    "UUID::V4"
   ],
   "description": "Provides perpetual data for miscellaneous holidays",
   "license": "Artistic-2.0",
