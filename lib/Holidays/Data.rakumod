@@ -32,7 +32,7 @@ unit module Holidays::Data;
 # Perl Harbor Day
 # Armed Forces Day
 
-our %holidays is export = %(
+our %misc-holidays is export = %(
     # traditional (fixed) dates
     # Groundhog Day - February 2
     ground => {

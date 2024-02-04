@@ -1,6 +1,8 @@
 unit module Holidays::Miscellaneous;
 
 use Holidays::Data;
+use Date::Event;
+use Date::Utils;
 
 # Valentines Day
 # Flag Day
@@ -22,19 +24,10 @@ use Holidays::Data;
 #       begins at sunset.
 #   source: Wikipedia
 
-use Date::Utils;
 
-class Holiday is export {
-    has Str  $.name          is required; #  => "Mother's Day",
-    has Bool $.is-calculated;             #  => True,
-    has Str  $.id            is required; #  => 'moth',
-    has Date $.date;
-    has Str  $.short-name = "";
-    # data for nth day of month
-    has UInt $.nth-value = 0;              #         => 2,
-    has UInt $.nth-dow     = 0;            # day-of-week number (1..7 Monday..Sunday)
-    has UInt $.nth-month-number = 0;       # 1..12 Jan..Dec
+class MiscHoliday is Date::Event is export {}
 
+=begin comment
     submethod TWEAK {
         if not $!date.defined {
             $!is-calculated = True;
@@ -45,7 +38,7 @@ class Holiday is export {
             $!nth-month-number = %holidays{$!id}<month-number>;
         }
     }
-}
+=end comment
 
 # holidays are divided into two categories:
 #   traditional or fixed (same every year)
@@ -59,10 +52,10 @@ class Holiday is export {
 # Perl Harbor Day
 # Armed Forces Day
 
-sub get-holidays(:$year!, :$debug --> Hash) is export {
+sub get-misc-holidays(:$year!, :$debug --> Hash) is export {
     my %h;
-    for %holidays.keys -> $id {
-        my Holiday $h = calc-holiday-dates :$year, :$id, :$debug;
+    for %misc-holidays.keys -> $id {
+        my MiscHoliday $h = calc-misc-holiday-dates :$year, :$id, :$debug;
         %h{$h.date}          = $h;
     }
     %h
@@ -76,7 +69,7 @@ sub get-holidays(:$year!, :$debug --> Hash) is export {
 #      it is observed on the previous Friday. When the date falls
 #      on a Sunday, it is observed on the following Monday.
 
-sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
+sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
     # Holidays defined in the %holidays hash with attribute
     # date => "0000-nn-nn" have traditional, designated dates.
     #
@@ -84,14 +77,14 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
     # calculated rule and their actual and observed dates
     # are the same.
 
-    my $name           = %holidays{$id}<name>;
-    my $date           = %holidays{$id}<date>;
-    my $short-name     = %holidays{$id}<short-name>;
-    my $check-id       = %holidays{$id}<id>;
+    my $name           = %misc-holidays{$id}<name>;
+    my $date           = %misc-holidays{$id}<date>;
+    my $short-name     = %misc-holidays{$id}<short-name>;
+    my $check-id       = %misc-holidays{$id}<id>;
     # for calculated dates
-    my $nth-value      = %holidays{$id}<nth-value>;
-    my $nth-dow        = %holidays{$id}<nth-dow>;
-    my $nth-month      = %holidays{$id}<nth-month>;
+    my $nth-value      = %misc-holidays{$id}<nth-value>;
+    my $nth-dow        = %misc-holidays{$id}<nth-dow>;
+    my $nth-month      = %misc-holidays{$id}<nth-month>;
 
     # fixed or directed date
     if $date ~~ /^ '0000-' (\d\d) '-' (\d\d) / {
@@ -104,7 +97,7 @@ sub calc-holiday-dates(:$year!, :$id!, :$debug --> Holiday) is export {
         # calculated date:
         $date = calc-date :$name, :$year, :$debug;
     }
-    Holiday.new: :$date, :$id, :$name, :$short-name;
+    MiscHoliday.new: :$date, :$id, :$name, :$short-name;
 }
 
 sub calc-date(:$name!, :$year!, :$debug --> Date) is export {
