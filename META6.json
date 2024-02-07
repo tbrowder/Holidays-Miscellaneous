@@ -9,7 +9,7 @@
     "Date::Calendar::Hebrew",
     "Text::Utils",
     "Date::Utils",
-    "Date::Event",
+    "Date::Event:ver<0.0.10+>",
     "UUID::V4"
   ],
   "description": "Provides perpetual data for miscellaneous holidays",
