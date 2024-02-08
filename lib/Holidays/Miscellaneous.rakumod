@@ -84,10 +84,10 @@ sub calc-misc-holiday-dates(:$year!, :$id!, :$debug --> MiscHoliday) { # is expo
         # calculated date:
         $date = calc-date :$name, :$year, :$debug;
     }
-    MiscHoliday.new: :$date, :$id, :$name, :$short-name;
+    MiscHoliday.new: :$date, :$id, :$name, :Etype(100), :$short-name;
 }
 
-sub calc-date(:$name!, :$year!, :$debug --> Date) { # is export {
+sub calc-date(:$name!, :$year!, :$debug --> Date) {
     # This should be similar to the same routine in Holidays::US::Federal
     my Date $date;
     with $name {

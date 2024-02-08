@@ -38,14 +38,14 @@ our %misc-holidays is export = %(
     ground => {
         name => "Groundhog Day",
         date => "0000-02-02",
-        short-name => "",
+        short-name => "G'hog Day",
         id => 'ground',
     },
     # Valentine's Day - February 14
     val => {
         name => "Valentine's Day",
         date => "0000-02-14",
-        short-name => "",
+        short-name => "Valentine",
         id => 'val',
     },
 
@@ -53,7 +53,7 @@ our %misc-holidays is export = %(
     pat => {
         name => "St. Patrick's Day",
         date => "0000-03-17",
-        short-name => "",
+        short-name => "St Patty's Day",
         id => 'pat',
     },
     # Flag Day - June 14
@@ -69,7 +69,7 @@ our %misc-holidays is export = %(
     pearl => {
         name => "Pearl Harbor Day",
         date => "0000-12-07",
-        short-name => "",
+        short-name => "Perl Harbor",
         id => 'pearl',
     },
 
