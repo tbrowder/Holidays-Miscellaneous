@@ -58,15 +58,15 @@ Current holiday list
 
   * Flag Day - June 14
 
-  * Halloween - October 31
-
   * *Father's Day - third Sunday in June
+
+  * *National Grandparent's Day - (Sept) first Sunday after US Labor Day
+
+  * Halloween - October 31
 
   * *Election Day - Tuesday after the first Monday of November in even years (US)
 
   * Pearl Harbor Day - December 7
-
-  * *National Grandparent's Day - first Sunday after US Labor Day
 
 Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed dates vary from year to year. This module uses module **Date::Utils** for that calculation.
 
