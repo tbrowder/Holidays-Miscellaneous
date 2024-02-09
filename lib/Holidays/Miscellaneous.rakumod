@@ -41,6 +41,12 @@ class MiscHoliday is Date::Event is export {}
 sub get-misc-holidays(:$year!, :$set-id!, :$debug --> Hash) is export {
     my %h;
     for %misc-holidays.keys -> $id {
+        if $id ~~ /:i elect / {
+            # special: Election Day only occurs in even years
+            # Election Day
+            next if $year % 2; # skip odd years
+        }
+
         my $uid = $set-id ~ '|' ~ $id;
         my MiscHoliday $h = calc-misc-holiday-dates :$year, :$id, :$debug;
         %h{$h.date}{$uid} = $h;
@@ -93,15 +99,36 @@ sub calc-date(:$name!, :$year!, :$debug --> Date) {
     with $name {
         my ($month, $nth, $dow);
 
-        =begin comment
-        when $_.contains("Grand") {
-        }
-        =end comment
+        when $_.contains("Grandp") {
+            # we first have to determine Labor day
+            # which is first Monday in September
+            $month =  9; # same month
+            my $Ldow = 1;
+            my $Lnth = 1;
+            my $Ldate  = nth-day-of-week-in-month :$year, :$month,
+                         :day-of-week($Ldow), :nth($Lnth), :$debug;
 
+            # Now Grandparents
+            $dow   =  7; # first Sunday after labor day
+            $nth   =  1;
+            $date = nth-dow-after-date :date($Ldate), :$nth, :$dow;
+        }
+
+        # Election Day - Tuesday after the first Monday of November in even years (US)
+        #   source: Wikipedia
         when $_.contains("Election") {
+            die "FATAL: Election Day is in even years, $year is odd" if $year % 2;
             $month = 11;
+            # we first have to determine first Monday in November
+            my $Edow = 1;
+            my $Enth = 1;
+            my $Edate  = nth-day-of-week-in-month :$year, :$month,
+                         :day-of-week($Edow), :nth($Enth), :$debug;
+
+            # now the actual day
             $dow   =  2;
-            $nth   =  0;
+            $nth   =  1;
+            $date = nth-dow-after-date :date($Edate), :$nth, :$dow;
         }
         when $_.contains("Mother") {
             $month = 5;

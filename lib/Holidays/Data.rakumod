@@ -109,8 +109,8 @@ our %misc-holidays is export = %(
         id => "grandp",
         # data for nth day of month
         nth-value        => 0,
-        nth-dow          => 0, # day-of-week number (1..7 Monday..Sunday)
-        nth-month-number => 0, # 1..12 Jan..Dec
+        nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 9, # 1..12 Jan..Dec
     },
     # Election Day - Tuesday after the first Monday of November in even years (US)
     #   source: Wikipedia
