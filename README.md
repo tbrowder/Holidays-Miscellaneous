@@ -66,7 +66,7 @@ Current holiday list
 
   * Pearl Harbor Day - December 7
 
-  * National Grandparent's Day - first Sunday after US Labor Day
+  * *National Grandparent's Day - first Sunday after US Labor Day
 
 Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed dates vary from year to year. This module uses module **Date::Utils** for that calculation.
 
