@@ -10,6 +10,30 @@ SYNOPSIS
 
 ```raku
 use Holidays::Miscellaneous;
+use UUID::V4;
+
+my $year = 2025;
+my $set-id = uuid-v4; # A unique ID for the set of holidays so they can be
+                      # merged with other C<Date::Event> sets for calendar
+                      # generation;
+my %mh = get-misc-holidays :$year, :$set-id;
+# Keys of the '%us' hash are the C<$year>'s dates with holidays
+my @d = %mh.keys.sort({$^a cmp $^b}); # Get array in date order
+for @d -> $D {
+    my Date $date .= new: $D; # Get the Date
+    my %h = %mh{$date};
+    # The value of %h is another hash keyed by: ($set-id ~ '|' ~ $id)
+    # but we only break that key down for testing.
+    #    %h{$h.date}{$key} = $holiday;
+    my $holiday;
+    for %h.keys -> $key {
+        $holiday = %h{$key}; # The C<MiscHoliday> class object (a C<Date::Event>)
+        # use the data for a calendar day cell
+        my $d  = $holiday.date;
+        my $n  = $holiday.name;
+        my $ns = $holiday.short-name;
+    }
+}
 ```
 
 DESCRIPTION
@@ -34,9 +58,15 @@ Current holiday list
 
   * Flag Day - June 14
 
+  * Halloween - October 31
+
   * *Father's Day - third Sunday in June
 
+  * *Election Day - Tuesday after the first Monday of November in even years (US)
+
   * Pearl Harbor Day - December 7
+
+  * National Grandparent's Day - first Sunday after US Labor Day
 
 Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed dates vary from year to year. This module uses module **Date::Utils** for that calculation.
 
@@ -53,8 +83,6 @@ Related Raku modules by the author:
 
   * **Holidays::US::Federal**
 
-  * **Calendar**
-
   * **Calendar::Christian**
 
   * **Calendar::Jewish**
@@ -62,6 +90,8 @@ Related Raku modules by the author:
   * **Date::Event**
 
   * **Date::Utils**
+
+  * **Calendar**
 
 AUTHOR
 ======

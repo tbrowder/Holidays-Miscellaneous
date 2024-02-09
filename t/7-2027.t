@@ -2,7 +2,7 @@ use Test;
 use Holidays::Miscellaneous;
 use UUID::V4;
 
-my $year = 2024;
+my $year = 2027;
 
 my $set-id = uuid-v4;
 my %h = get-misc-holidays :$year, :$set-id;
@@ -56,27 +56,28 @@ for @d -> $D {
             when /:i mother  / {
                 is $date, $d;
                 is $d.month, 5; # always
-                is $d.day, 12;  # calculated
+                is $d.day, 9;   # calculated
             }
             when /:i armed   / {
                 is $date, $d;
                 is $d.month, 5; # always
-                is $d.day, 18;  # calculated
+                is $d.day, 15;  # calculated
             }
             when /:i father  / {
                 is $date, $d;
                 is $d.month, 6; # always
-                is $d.day, 16;  # calculated
+                is $d.day, 20;  # calculated
             }
             when /:i grandp  / {
                 is $date, $d;
                 is $d.month, 9; # always
-                is $d.day, 8;   # calculated
+                is $d.day, 12;  # calculated
             }
+            # not in odd years
             when /:i elect   / {
                 is $date, $d;
                 is $d.month, 11; # always
-                is $d.day, 5;    # calculated
+                is $d.day, 0;    # calculated
             }
             default {
                 die "FATAL: Unexpected 'when' \$_: '$_'";

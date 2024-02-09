@@ -5,17 +5,19 @@ unit module Holidays::Data;
 #   traditional or fixed (same every year)
 #   calculated by some formula
 
+# Groundhog Day
 # Valentines Day
-# Flag Day
 # St Patricks Day
+# Flag Day
+# Halloween
+# Perl Harbor Day
+
 # Mothers Day
 # Fathers Day
-# Perl Harbor Day
 # Armed Forces Day
 # National Grandparents' Day - first Sunday after Labor Day (US)
 # Election Day - Tuesday after the first Monday of November in even years (US)
 #   source: Wikipedia
-# Groundhog Day
 
 our %misc-holidays is export = %(
     # traditional (fixed) dates
@@ -60,7 +62,7 @@ our %misc-holidays is export = %(
     pearl => {
         name => "Pearl Harbor Day",
         date => "0000-12-07",
-        short-name => "Perl Harbor",
+        short-name => "Pearl Harbor",
         id => 'pearl',
     },
 

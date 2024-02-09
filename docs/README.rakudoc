@@ -7,23 +7,45 @@ B<Holidays::Miscellaneous> - Provides perpetual data for miscellaneous holidays
 =head1 SYNOPSIS
 
 =begin code :lang<raku>
-
 use Holidays::Miscellaneous;
+use UUID::V4;
 
+my $year = 2025;
+my $set-id = uuid-v4; # A unique ID for the set of holidays so they can be
+                      # merged with other C<Date::Event> sets for calendar
+                      # generation;
+my %mh = get-misc-holidays :$year, :$set-id;
+# Keys of the '%us' hash are the C<$year>'s dates with holidays
+my @d = %mh.keys.sort({$^a cmp $^b}); # Get array in date order
+for @d -> $D {
+    my Date $date .= new: $D; # Get the Date
+    my %h = %mh{$date};
+    # The value of %h is another hash keyed by: ($set-id ~ '|' ~ $id)
+    # but we only break that key down for testing.
+    #    %h{$h.date}{$key} = $holiday;
+    my $holiday;
+    for %h.keys -> $key {
+        $holiday = %h{$key}; # The C<MiscHoliday> class object (a C<Date::Event>)
+        # use the data for a calendar day cell
+        my $d  = $holiday.date;
+        my $n  = $holiday.name;
+        my $ns = $holiday.short-name;
+    }
+}
 =end code
 
 =head1 DESCRIPTION
 
 B<Holidays::Miscellaneous> is a collection of holiday data the author
 uses for I<perpetual> calendar creation. (The term I<perpetual> is
-used to mean the source code to generate the calendar's holiday
-dates is valid for any given year since the code uses the documented
-rules for determining those dates and no additional data need be
-inserted in the code annually.)
+used to mean the source code to generate the calendar's holiday dates
+is valid for any given year since the code uses the documented rules
+for determining those dates and no additional data need be inserted in
+the code annually.)
 
-Note the names and dates of the holidays are those customarily used in the U.S., but
-several of those holidays are commonly celebrated in other countries
-around the world.
+Note the names and dates of the holidays are those customarily used in
+the U.S., but several of those holidays are commonly celebrated in
+other countries around the world.
 
 =head2 Current holiday list
 
@@ -33,8 +55,11 @@ around the world.
 =item *Mother's Day - second Sunday in May
 =item *Armed Forces Day - third Saturday in May
 =item Flag Day - June 14
+=item Halloween - October 31
 =item *Father's Day - third Sunday in June
+=item *Election Day - Tuesday after the first Monday of November in even years (US)
 =item Pearl Harbor Day - December 7
+=item National Grandparent's Day - first Sunday after US Labor Day
 
 Holidays marked with a leading '*' are classified as 'calculated'
 holidays since their observed dates vary from year to year.  This
@@ -50,11 +75,11 @@ Related Raku modules by the author:
 =item B<Date::Christian::Advent>
 =item B<Date::Easter>
 =item B<Holidays::US::Federal>
-=item B<Calendar>
 =item B<Calendar::Christian>
 =item B<Calendar::Jewish>
 =item B<Date::Event>
 =item B<Date::Utils>
+=item B<Calendar>
 
 =head1 AUTHOR
 
