@@ -92,6 +92,17 @@ sub calc-date(:$name!, :$year!, :$debug --> Date) {
     my Date $date;
     with $name {
         my ($month, $nth, $dow);
+
+        =begin comment
+        when $_.contains("Grand") {
+        }
+        =end comment
+
+        when $_.contains("Election") {
+            $month = 11;
+            $dow   =  2;
+            $nth   =  0;
+        }
         when $_.contains("Mother") {
             $month = 5;
             $dow   = 7;

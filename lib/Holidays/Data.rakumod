@@ -1,25 +1,6 @@
 unit module Holidays::Data;
 
-# Valentines Day
-# Flag Day
-# St Patricks Day
-# Mothers Day
-# Fathers Day
-# Perl Harbor Day
-# Armed Forces Day
-
-# National Grandparents' Day - first Sunday after Labor Day (US)
-# Election Day - Tuesday after the first Monday of November in even years (US)
-#   source: Wikipedia
 #
-# ===== LATER:
-# Hanukkah - [use Raku module Date::Calendar::Hebrew by @jforget ]
-#    Jewish festival that begins at the 25th day of Kislev, lasts
-#       eight days, and concludes on the second or third day of
-#       Tevet (Kislev can have 29 or 30 days). Note the Jewish day
-#       begins at sunset.
-#   source: Wikipedia
-
 # holidays are divided into two categories:
 #   traditional or fixed (same every year)
 #   calculated by some formula
@@ -31,6 +12,10 @@ unit module Holidays::Data;
 # Fathers Day
 # Perl Harbor Day
 # Armed Forces Day
+# National Grandparents' Day - first Sunday after Labor Day (US)
+# Election Day - Tuesday after the first Monday of November in even years (US)
+#   source: Wikipedia
+# Groundhog Day
 
 our %misc-holidays is export = %(
     # traditional (fixed) dates
@@ -64,6 +49,12 @@ our %misc-holidays is export = %(
         id => 'flag',
     },
     # Halloween - October 31
+    hallo => {
+        name => "Halloween",
+        date => "0000-10-31",
+        short-name => "",
+        id => 'hallo',
+    },
 
     # Pearl Harbor Day - December 7
     pearl => {
@@ -108,5 +99,29 @@ our %misc-holidays is export = %(
         nth-value        => 3,
         nth-dow          => 7, # day-of-week number (1..7 Monday..Sunday)
         nth-month-number => 6, # 1..12 Jan..Dec
+    },
+
+    # National Grandparents' Day - first Sunday after Labor Day (US)
+    grandp => {
+        name => "National Grandparents' Day",
+        is-calculated => True,
+        short-name => "Grandparents Day",
+        id => "grandp",
+        # data for nth day of month
+        nth-value        => 0,
+        nth-dow          => 0, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 0, # 1..12 Jan..Dec
+    },
+    # Election Day - Tuesday after the first Monday of November in even years (US)
+    #   source: Wikipedia
+    elect => {
+        name => "Election Day",
+        is-calculated => True,
+        short-name => "",
+        id => "elect",
+        # data for nth day of month
+        nth-value        => 0,
+        nth-dow          => 0, # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 0, # 1..12 Jan..Dec
     },
 );

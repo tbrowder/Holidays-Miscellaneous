@@ -9,6 +9,7 @@
     "Date::Calendar::Hebrew",
     "Text::Utils",
     "Date::Utils",
+    "Holidays::US::Federal",
     "Date::Event:ver<0.0.9+>",
     "UUID::V4"
   ],

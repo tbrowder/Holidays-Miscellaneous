@@ -15,6 +15,7 @@ isa-ok %h.keys.head, Str, "keys are Date strings";
 
 # keys are the combination of "$set-id|traditional date"
 my @d = %h.keys.sort({$^a cmp $^b});
+my $i = 0;
 for @d -> $D {
     my Date $date .= new: $D;
     my %hh = %h{$date};
@@ -32,7 +33,7 @@ for @d -> $D {
         $h   = %hh{$key};
         last;
     }
-
+    ++$i;
     my $d  = $h.date;
     my $do = $h.date-observed;
     my $n  = $h.name;
@@ -41,7 +42,6 @@ for @d -> $D {
     is $uid, $id, "individual id checks";
 
     is $h.etype, "Holiday", "type (EType) is 100 (holiday)";
-
 }
 
 done-testing;
