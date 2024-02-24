@@ -66,6 +66,22 @@ our %misc-holidays is export = %(
         id => 'pearl',
     },
 
+    # Christmas Eve - December 24
+    christmaseve => {
+        name => "Christmas Eve",
+        date => "0000-12-24",
+        short-name => "Christmas Eve",
+        id => 'christmaseve',
+    },
+
+    # New Year's Eve - December 31
+    newyear => {
+        name => "New Year's Eve",
+        date => "0000-12-31",
+        short-name => "New Year's Eve",
+        id => 'newyear',
+    },
+
     #===================================================
     # calculated
     #===================================================
@@ -107,7 +123,7 @@ our %misc-holidays is export = %(
     grandp => {
         name => "National Grandparents' Day",
         is-calculated => True,
-        short-name => "Grandparents Day",
+        short-name => "Grandparents' Day",
         id => "grandp",
         # data for nth day of month
         nth-value        => 0,
@@ -123,7 +139,7 @@ our %misc-holidays is export = %(
         id => "elect",
         # data for nth day of month
         nth-value        => 0,
-        nth-dow          => 0, # day-of-week number (1..7 Monday..Sunday)
-        nth-month-number => 0, # 1..12 Jan..Dec
+        nth-dow          => 2,  # day-of-week number (1..7 Monday..Sunday)
+        nth-month-number => 11, # 1..12 Jan..Dec
     },
 );

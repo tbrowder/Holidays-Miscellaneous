@@ -44,7 +44,7 @@ for @d -> $D {
     is $h.etype, "Holiday", "type (EType) is 100 (holiday)";
 }
 
-is $i, 11, "have 11 holidays";
+is $i, 13, "have 13 holidays";
 
 done-testing;
 

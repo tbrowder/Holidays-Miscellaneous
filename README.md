@@ -36,6 +36,15 @@ for @d -> $D {
 }
 ```
 
+For simpler use, we can get a hash also keyed by Date, but whose values are lists of holiday events:
+
+    my %mh = get-misc-holidays-hashlist :$year;
+    for %mh.keys.sort -> $date {
+        for @(%ms{$date}) -> $holiday {
+            my $n = $holiday.name;
+        }
+    }
+
 DESCRIPTION
 ===========
 
@@ -60,13 +69,17 @@ Current holiday list
 
   * *Father's Day - third Sunday in June
 
-  * *National Grandparent's Day - (Sept) first Sunday after US Labor Day
+  * *National Grandparents' Day - (Sept) first Sunday after US Labor Day
 
   * Halloween - October 31
 
   * *Election Day - Tuesday after the first Monday of November in even years (US)
 
   * Pearl Harbor Day - December 7
+
+  * Christmas Eve - December 24
+
+  * New Year's Eve - December 31
 
 Holidays marked with a leading '*' are classified as 'calculated' holidays since their observed dates vary from year to year. This module uses module **Date::Utils** for that calculation.
 
@@ -82,10 +95,6 @@ Related Raku modules by the author:
   * **Date::Easter**
 
   * **Holidays::US::Federal**
-
-  * **Calendar::Christian**
-
-  * **Calendar::Jewish**
 
   * **Date::Event**
 

@@ -38,6 +38,12 @@ class MiscHoliday is Date::Event is export {}
 # Perl Harbor Day
 # Armed Forces Day
 
+sub get-misc-holidays-hashlist(:$year!, :$debug --> Hash) is export {
+    my %h;
+    for %misc-holidays.keys.sort -> $date {
+    }
+}
+
 sub get-misc-holidays(:$year!, :$set-id!, :$debug --> Hash) is export {
     my %h;
     for %misc-holidays.keys -> $id {
@@ -99,7 +105,7 @@ sub calc-date(:$name!, :$year!, :$debug --> Date) {
     with $name {
         my ($month, $nth, $dow);
 
-        when $_.contains("Grandp") {
+        when /:i grandp / {
             # we first have to determine Labor day
             # which is first Monday in September
             $month =  9; # same month
@@ -116,7 +122,7 @@ sub calc-date(:$name!, :$year!, :$debug --> Date) {
 
         # Election Day - Tuesday after the first Monday of November in even years (US)
         #   source: Wikipedia
-        when $_.contains("Election") {
+        when /:i election / {
             die "FATAL: Election Day is in even years, $year is odd" if $year % 2;
             $month = 11;
             # we first have to determine first Monday in November

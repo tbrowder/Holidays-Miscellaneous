@@ -51,6 +51,16 @@ for @d -> $D {
                 is $d.month, 12; # always
                 is $d.day, 7;    # always
             }
+            when /:i christmas \h+ eve  / {
+                is $date, $d;
+                is $d.month, 12; # always
+                is $d.day, 24;   # always
+            }
+            when /:i new \h+ year  / {
+                is $date, $d;
+                is $d.month, 12; # always
+                is $d.day, 31;   # always
+            }
 
             # calculated dates
             when /:i mother  / {

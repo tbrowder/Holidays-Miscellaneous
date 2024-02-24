@@ -34,6 +34,18 @@ for @d -> $D {
 }
 =end code
 
+For simpler use, we can get a hash also keyed by Date, but whose values
+are lists of holiday events:
+
+=begin code
+my %mh = get-misc-holidays-hashlist :$year;
+for %mh.keys.sort -> $date {
+    for @(%ms{$date}) -> $holiday {
+        my $n = $holiday.name;
+    }
+}
+=end code
+
 =head1 DESCRIPTION
 
 B<Holidays::Miscellaneous> is a collection of holiday data the author
@@ -56,10 +68,12 @@ other countries around the world.
 =item *Armed Forces Day - third Saturday in May
 =item Flag Day - June 14
 =item *Father's Day - third Sunday in June
-=item *National Grandparent's Day - (Sept) first Sunday after US Labor Day
+=item *National Grandparents' Day - (Sept) first Sunday after US Labor Day
 =item Halloween - October 31
 =item *Election Day - Tuesday after the first Monday of November in even years (US)
 =item Pearl Harbor Day - December 7
+=item Christmas Eve - December 24
+=item New Year's Eve - December 31
 
 Holidays marked with a leading '*' are classified as 'calculated'
 holidays since their observed dates vary from year to year.  This
@@ -75,8 +89,6 @@ Related Raku modules by the author:
 =item B<Date::Christian::Advent>
 =item B<Date::Easter>
 =item B<Holidays::US::Federal>
-=item B<Calendar::Christian>
-=item B<Calendar::Jewish>
 =item B<Date::Event>
 =item B<Date::Utils>
 =item B<Calendar>

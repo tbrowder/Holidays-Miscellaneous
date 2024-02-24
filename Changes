@@ -1,6 +1,14 @@
 Revision history for Holidays-Miscellaneous
 
 {{$NEXT}}
+    - Add new subroutine with tests:
+      + get-misc-holidays-hashlist(:$year! --> Hash)
+    - Add more holidays and tests
+      + Grandparents Day
+      + Halloween
+      + Election Day (US)
+      + Cheistmas Eve
+      + New Year's Eve
 
 0.0.1  2024-02-09T10:42:29-06:00
     - Initial version
